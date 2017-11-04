@@ -69,6 +69,10 @@
                 </a>
             </td>
         </tr>
+    <#else>
+        <tr>
+            <td colspan="4">Nenhum Adolescente cadastrado</td>
+        </tr>
     </#list>
     </table>
 </div>

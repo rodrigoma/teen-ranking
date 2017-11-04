@@ -43,6 +43,10 @@
             <td>${teen.name}</td>
             <td>${teen.points}</td>
         </tr>
+    <#else>
+        <tr>
+            <td colspan="2">Ranking Vazio</td>
+        </tr>
     </#list>
     </table>
 </div>

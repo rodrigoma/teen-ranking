@@ -50,6 +50,7 @@
             <th>Nome</th>
             <th>Pontos</th>
             <th></th>
+            <th></th>
         </tr>
     <#list teenList as teen>
         <tr>
@@ -61,6 +62,11 @@
                     <input type="number" name="points" alt="pontos" value="0" />
                     <input type="submit" value="+/-" />
                 </form>
+            </td>
+            <td>
+                <a href="/admin/delete/${teen.hash}">
+                <img src="delete.jpg" width="10" height="10">
+                </a>
             </td>
         </tr>
     </#list>

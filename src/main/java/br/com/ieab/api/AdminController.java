@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import static br.com.ieab.Commons.KEY;
-import static br.com.ieab.Commons.hashToName;
 import static java.lang.Long.parseLong;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
@@ -33,7 +32,7 @@ public class AdminController {
 
         List<Teen> teenList = new ArrayList();
 
-        teensMap.forEach((hash, point) -> teenList.add(new Teen(parseLong(point), hashToName(hash))));
+        teensMap.forEach((hash, point) -> teenList.add(new Teen(parseLong(point), hash)));
 
         sort(teenList);
 
@@ -55,6 +54,15 @@ public class AdminController {
     public String incrisePoint(@ModelAttribute("teen") Teen teen) {
         if (teen != null) {
             stringRedisTemplate.opsForHash().increment(KEY, teen.getHash(), teen.getPoints());
+        }
+
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/delete/{hash}")
+    public String delete(@PathVariable("hash") String hash) {
+        if (hash != null && !hash.isEmpty()) {
+            stringRedisTemplate.opsForHash().delete(KEY, hash);
         }
 
         return "redirect:/admin";
